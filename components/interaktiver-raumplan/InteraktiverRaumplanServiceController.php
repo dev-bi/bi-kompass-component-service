@@ -17,9 +17,12 @@ class InteraktiverRaumplanServiceController extends Controller
         return view('test', ['rooms' => $rooms]);
     }
 
-    public function getJson($locationId) {
-
-        $rooms = app('db')->select("select * from rooms where location_id = ?", [$locationId]);
+    public function getJson($locationId = 0) {
+        $rooms = null;
+        if ($locationId == 0)
+            $rooms = app('db')->select("select * from rooms");
+        else
+            $rooms = app('db')->select("select * from rooms where location_id = ?", [$locationId]);
         return response()->json($rooms);
     }
 
