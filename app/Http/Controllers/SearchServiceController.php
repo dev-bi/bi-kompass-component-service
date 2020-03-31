@@ -19,9 +19,12 @@ class SearchServiceController extends Controller
     public function find(Request $request) 
     {
         if ($request->has('sstring') && $request->input('sstring') !== "") {
-            $searchQuery = "Suche nach: " . $request->input('sstring');
+            //$searchQuery = "Suche nach: " . $request->input('sstring');
+            $sstring = $request->input('sstring');
+            $result = app('db')->select("SELECT question_short FROM test_faqs WHERE question_short LIKE '%$sstring%'");
+            return response()->json($result);
         } else {
-            $searchQuery = "Das war keine gültige Eingabe, du Spacko!";
+            $searchQuery = "Keine gültige Eingabe!";
 
         }
         
