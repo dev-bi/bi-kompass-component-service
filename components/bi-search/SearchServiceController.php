@@ -21,7 +21,7 @@ class SearchServiceController extends Controller
         if ($request->has('sstring') && $request->input('sstring') !== "") {
             //$searchQuery = "Suche nach: " . $request->input('sstring');
             $sstring = $request->input('sstring');
-            $result = app('db')->select("SELECT question_short FROM test_faqs WHERE question_short LIKE '%$sstring%'");
+            $result = app('db')->select("SELECT * FROM test_faqs WHERE question_short LIKE '%$sstring%'");
             return response()->json($result);
         } else {
             $searchQuery = "Keine gültige Eingabe!";
