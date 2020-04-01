@@ -20,14 +20,12 @@ $router->get('/', function () use ($router) {
 
 
 /** 
- * Routes 'Suche'
  * 
+ * Include routes from Component-Service
+ *  
  */
 
-$router->get('/hello', 'SearchServiceController@index');
-
-$router->get('/find[/{sstring}]', 'SearchServiceController@find');
-
 require_once 'components/interaktiver-raumplan/routes.php';
+require_once 'components/bi-search/routes.php';
 
 

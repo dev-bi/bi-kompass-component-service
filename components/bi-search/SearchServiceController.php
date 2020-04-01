@@ -13,7 +13,7 @@ class SearchServiceController extends Controller
 
     public function index()
     {
-        echo "Wollen Sie etwas suchen?";
+        return view('sbar');
     }
 
     public function find(Request $request) 
@@ -25,7 +25,6 @@ class SearchServiceController extends Controller
             return response()->json($result);
         } else {
             $searchQuery = "Keine gültige Eingabe!";
-
         }
         
         echo $searchQuery;

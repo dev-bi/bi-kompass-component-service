@@ -5,3 +5,4 @@
 */
 
 require_once 'interaktiver-raumplan/InteraktiverRaumplanServiceController.php';
+require_once 'bi-search/SearchServiceController.php';
