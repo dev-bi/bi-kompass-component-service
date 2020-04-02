@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\View;
 
 class SearchServiceController extends Controller
 {
@@ -13,7 +15,20 @@ class SearchServiceController extends Controller
 
     public function index()
     {
-        return view('sbar');
+        return view('html');
+    }
+
+    public function show()
+    {
+        return view('html');
+    }
+
+    public function serve_css()
+    {
+        $css_content = View::make('style');
+
+        return (new Response($css_content, '200'))
+                  ->header('Content-Type', 'text/css');
     }
 
     public function find(Request $request) 
