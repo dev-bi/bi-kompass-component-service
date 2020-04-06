@@ -15,12 +15,12 @@ class SearchServiceController extends Controller
 
     public function index()
     {
-        return view('html');
+        return view('bi-search');
     }
 
     public function show()
     {
-        return view('html');
+        return view('bi-search');
     }
 
     public function serve_css()
