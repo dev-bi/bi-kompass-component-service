@@ -8,23 +8,36 @@ use Illuminate\Support\Facades\View;
 class SearchServiceController extends Controller
 {
 
-    public function __construct()
-    {
-        
+    private $viewPath = 'components/bi-search/views';
+      
+    private function configViewPath () {
+        config([
+            'view.paths' => [realpath(base_path($this->viewPath))]
+        ]);
     }
 
-    public function index()
-    {
-        return view('bi-search');
-    }
-
+    /**
+     * Zeigt die Komponente an.
+     * 
+     * In Wordpress wird diese Methode aufgerufen, um die Komponente einzubinden
+     *  
+     * @return View Gibt View der Komponente als HTML zurück.
+     */
     public function show()
     {
+        $this->configViewPath();
+
         return view('bi-search');
     }
 
-    public function serve_css()
+    /**
+     * Wird verwendet, um die css Datei der Komponente in Wordpress einzubinden.
+     * 
+     * @return Response gibt die für diesen View verwendete css datei zurück.
+     */
+    public function serveStylesheet()
     {
+        $this->configViewPath();
         $css_content = View::make('style');
 
         return (new Response($css_content, '200'))
