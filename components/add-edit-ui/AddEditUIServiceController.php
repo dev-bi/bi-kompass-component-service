@@ -30,11 +30,15 @@ class AddEditUIServiceController extends Controller{
      * @return View Gibt View der Komponente als HTML zurück.
      */
     public function show() {
-        /* Dieser Aufruf ist vorerst notwendig, um den View richtig zu lokalisieren */
+        /* Dieser Aufruf ist vorerst notwendig, um die View-Dateien richtig zu lokalisieren */
         /* ToDo: als Middleware realisieren */
         $this->configViewPath();
 
-        return view('add-edit-ui-index-html');
+        $someData = [
+            "test" => "Testdaten",
+            "muh" => "andere Daten",
+        ];
+        return view('add-edit-ui-index-html', ['someData' => $someData]);
     }
 
 
@@ -44,7 +48,7 @@ class AddEditUIServiceController extends Controller{
      * @return Response gibt die für diesen View verwendete css datei zurück.
      */
     public function serveStylesheet() {
-        /* dieser Aufruf ist vorerst notwendig, um den View richtig zu lokalisieren */
+        /* dieser Aufruf ist vorerst notwendig, um die View-Dateien richtig zu lokalisieren */
         /* ToDo: als Middleware realisieren */
         $this->configViewPath();
 
