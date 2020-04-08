@@ -1,14 +1,20 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Response;
 
-class InteraktiverRaumplanServiceController extends Controller 
-{
+/**
+ * addEditUIServiceController 
+ * 
+ * stellt eine Eingabemaske und die entsprechenden Operationen bereit,
+ * um Daten in die BI-Kompass Datenbank zu schreiben und zu bearbeiten
+ */
 
-    private $viewPath = 'components/interaktiver-raumplan/views';
+class AddEditUIServiceController extends Controller{
+
+    private $viewPath = 'components/add-edit-ui/views';
       
     private function configViewPath () {
         config([
@@ -20,18 +26,20 @@ class InteraktiverRaumplanServiceController extends Controller
      * Zeigt die Komponente an.
      * 
      * In Wordpress wird diese Methode aufgerufen, um die Komponente einzubinden
-     *  
+     * 
      * @return View Gibt View der Komponente als HTML zurück.
      */
     public function show() {
+        /* Dieser Aufruf ist vorerst notwendig, um die View-Dateien richtig zu lokalisieren */
+        /* ToDo: als Middleware realisieren */
         $this->configViewPath();
 
-        $rooms = app('db')->select('select * from rooms');
-        return view('test', ['rooms' => $rooms]);
+        $someData = [
+            "test" => "Testdaten",
+            "muh" => "andere Daten",
+        ];
+        return view('add-edit-ui-index-html', ['someData' => $someData]);
     }
-
-
-
 
 
     /**
@@ -40,26 +48,17 @@ class InteraktiverRaumplanServiceController extends Controller
      * @return Response gibt die für diesen View verwendete css datei zurück.
      */
     public function serveStylesheet() {
+        /* dieser Aufruf ist vorerst notwendig, um die View-Dateien richtig zu lokalisieren */
+        /* ToDo: als Middleware realisieren */
         $this->configViewPath();
 
-        $css_content = View::make('interaktiver-raumplan-view');
+        $css_content = View::make('add-edit-ui-view');
 
         return (new Response($css_content, '200'))
                   ->header('Content-Type', 'text/css');
 
     }
+    
 
-
-
-
-
-    public function getJson($locationId = 0) {
-        $rooms = null;
-        if ($locationId == 0)
-            $rooms = app('db')->select("select * from rooms");
-        else
-            $rooms = app('db')->select("select * from rooms where location_id = ?", [$locationId]);
-        return response()->json($rooms);
-    }
 
 }

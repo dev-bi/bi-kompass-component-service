@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers;
+$router->get('/floor-component/view/show', 'InteraktiverRaumplanServiceController@show');
+$router->get('/floor-component/view/css', 'InteraktiverRaumplanServiceController@serveStylesheet');
 
-$router->get('/floor/show', 'InteraktiverRaumplanServiceController@getView');
-
-$router->get('/floor/json[/{location}]', 'InteraktiverRaumplanServiceController@getJson');
+$router->get('/floor-component/json[/{location}]', 'InteraktiverRaumplanServiceController@getJson');
