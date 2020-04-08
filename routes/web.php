@@ -27,5 +27,6 @@ $router->get('/', function () use ($router) {
 
 require_once 'components/interaktiver-raumplan/routes.php';
 require_once 'components/bi-search/routes.php';
+require_once 'components/add-edit-ui/routes.php';
 
 

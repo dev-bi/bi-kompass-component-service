@@ -35,7 +35,7 @@
 </div>
 
 <script>
-    const baseUrl = "http://developer.lionysos.com/";
+    const baseUrl = "http://localhost/bi-kompass/";
     let searchInput = document.getElementById('search');
     
     let suggestionList = document.getElementById('suggestion-list');
