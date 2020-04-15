@@ -1,7 +1,7 @@
 <!-- Komponente: Interaktiver Raumplan -->
 <!-- --------------------------------------------------- -->
 
-<div>
+<div class="bi-kompass-component">
     <h1>Der View wurde erfolgreich geladen :)</h1>
 </div>
 
