@@ -1,5 +1,5 @@
 <!-- KOMPONENTE :: BEGINN -->
-<div class="container">
+<div class="bi-kompass-component">
     <div id="search-wrapper">
         <div id="search-box">
             <label for="search">BI - Suche:</label>
@@ -35,8 +35,18 @@
 </div>
 
 <script>
-    const baseUrl = "http://developer.lionysos.com/";
+    const baseUrlDev = "http://localhost/bi-kompass/";
+    const baseUrlProduction = "http://developer.lionysos.com/";
+    /*
+    * Environment Setting
+    */
+    const baseUrl = baseUrlDev;
+    /*
+    * Environment Setting End
+    */
+
     let searchInput = document.getElementById('search');
+    let suggestionInput = "";
     
     let suggestionList = document.getElementById('suggestion-list');
     
@@ -52,7 +62,15 @@
 
     function selSuggestion(e) {
         let val = e.target.innerHTML;
-        searchInput.value = val;
+        /* 
+        * Das muss alles gesäubert werden! Nur provisorischer Code!
+        * Außerdem: andere Lösung finden. data-Feld benutzen oder so
+        */
+        let openStrong = new RegExp("\<strong\>", "g");
+        let closeStrong = new RegExp("\<\/strong\>", "g");
+        valWithoutOpenStrong = val.replace(openStrong, "");
+        valWithoutAllTags = valWithoutOpenStrong.replace(closeStrong, "");
+        searchInput.value = valWithoutAllTags;
         suggestionList.innerHTML = '';
         searchInput.focus();
     }
@@ -87,13 +105,9 @@
                     let resultString = element.question_short;
                     let inputString = searchInput.value;
                     let regEx = new RegExp(inputString, "ig");
-                    /* 
-                        * ToDo:
-                        *      if inputString isUppercase
-                        */
                     let strongString = '<strong>' + inputString + '</strong>';
 
-                    let outputString = resultString.replace(regEx, strongString);
+                    let outputString = highlightMatches(inputString, resultString);
                     let li = document.createElement('LI');
                     li.innerHTML = outputString;
                     //let textNode = document.createTextNode(outputString);
@@ -135,7 +149,15 @@
         })
     }
 
+    function highlightMatches(substring="", originString="") {
+        let regex = new RegExp(substring, "gi");
+        let resStr = originString.replace(regex, (match) => {
+            return `<strong>${match}</strong>`;
+        })
+    return resStr;
+    }
 </script>
+
 
 <!-- KOMPONENTE :: ENDE -->
 
