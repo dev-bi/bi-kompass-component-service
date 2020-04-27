@@ -7,9 +7,6 @@
         </div>
         <div id="suggestion-list-wrapper">
             <ul id="suggestion-list">
-                <!--<li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li> -->
             </ul>
         </div>
     </div>
@@ -17,20 +14,15 @@
     <div id="search-info-box-wrapper">
         <div id="search-info-box">
             <div id="question">
-                Frage
             </div>
             <div id="question-long">
-                Lange, sehr ausführliche Ausführung einer Frage, die den Sachverhalt breit und weit darstellt. Blabla hier und Blabla da.
             </div>
             <div id="answer">
-                Hier die Antwort
             </div>
             <div id="link-wrapper">
-                <a id="link" href="#">Ein Link zu mehr Infos</a>
+                <a id="link" href="#"></a>
             </div>
         </div>
-        
-
     </div>
 </div>
 

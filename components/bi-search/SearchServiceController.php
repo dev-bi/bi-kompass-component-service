@@ -8,25 +8,23 @@ use Illuminate\Support\Facades\View;
 class SearchServiceController extends Controller
 {
 
-    private $viewPath = 'components/bi-search/views';
-      
-    private function configViewPath () {
+    static private $viewPath = 'components/bi-search/views';
+          
+    public function __construct() {
         config([
-            'view.paths' => [realpath(base_path($this->viewPath))]
+            'view.paths' => [realpath(base_path(self::$viewPath))]
         ]);
     }
 
     /**
      * Zeigt die Komponente an.
-     * 
+     *
      * In Wordpress wird diese Methode aufgerufen, um die Komponente einzubinden
-     *  
+     *
      * @return View Gibt View der Komponente als HTML zurück.
      */
     public function show()
     {
-        $this->configViewPath();
-
         return view('bi-search');
     }
 
@@ -37,7 +35,6 @@ class SearchServiceController extends Controller
      */
     public function serveStylesheet()
     {
-        $this->configViewPath();
         $css_content = View::make('style');
 
         return (new Response($css_content, '200'))
@@ -47,7 +44,6 @@ class SearchServiceController extends Controller
     public function find(Request $request) 
     {
         if ($request->has('sstring') && $request->input('sstring') !== "") {
-            //$searchQuery = "Suche nach: " . $request->input('sstring');
             $sstring = $request->input('sstring');
             $result = app('db')->select("SELECT * FROM test_faqs WHERE question_short LIKE '%$sstring%'");
             return response()->json($result);
@@ -55,8 +51,7 @@ class SearchServiceController extends Controller
             $searchQuery = "Keine gültige Eingabe!";
         }
         
-        echo $searchQuery;
-        //return $searchQuery;
+        return $searchQuery;
     }
     
 }
