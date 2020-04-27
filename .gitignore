@@ -5,3 +5,5 @@ Homestead.yaml
 .env.production
 .phpunit.result.cache
 node_modules
+package.json
+.eslintrc.json
