@@ -35,15 +35,13 @@
 </div>
 
 <script>
-    const baseUrlDev = "http://localhost/bi-kompass/";
-    const baseUrlProduction = "http://developer.lionysos.com/";
     /*
-    * Environment Setting
+        Environment Setting
     */
-    const baseUrl = baseUrlDev;
-    /*
-    * Environment Setting End
-    */
+    const env = "http://localhost/bi-kompass/";
+    //const baseUrlProduction = "http://developer.lionysos.com/";
+
+    const baseUrl = env;
 
     let searchInput = document.getElementById('search');
     let suggestionInput = "";
