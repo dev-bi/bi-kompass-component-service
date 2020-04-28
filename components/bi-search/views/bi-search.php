@@ -13,7 +13,7 @@
 
     <div id="search-info-box-wrapper">
         <div id="search-info-box">
-            <div id="question">
+           <!-- <div id="question">
             </div>
             <div id="question-long">
             </div>
@@ -21,7 +21,7 @@
             </div>
             <div id="link-wrapper">
                 <a id="link" href="#"></a>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

@@ -6,73 +6,103 @@ const env = "http://localhost/bi-kompass/";
 const baseUrl = env;
 
 let inputText = document.getElementById('search');
-let suggestionList = document.getElementById('suggestion-list');
 
-/* Felder für Frage, Antwort und Link */
-let questionShort = document.getElementById('question');
-let questionLong = document.getElementById('question-long');
-let answer = document.getElementById('answer');
-let link = document.getElementById('link');
-/* ********************************** */
+let elSuggestionList = document.getElementById('suggestion-list');
+
+/*
+let elQuestionShort = document.getElementById('question');
+let elQuestionLong = document.getElementById('question-long');
+let elAnswer = document.getElementById('answer');
+let elLink = document.getElementById('link'); */
+let elResultsContainer = document.getElementById('search-info-box');
 
 let preResult = { suggestions : ''};
-let resultObject = { result: '' };
+let searchResultsObject = { result: '' };
 
-function getSelectedSuggestion(e) {
+function assignSelectedSuggestionToInputText(e) {
     let val = e.target.innerHTML;
 
     let strongHtmlTags = new RegExp("<[/]?strong>", "g");
     let adjustedSearchString = val.replace(strongHtmlTags, "");
 
     inputText.value = adjustedSearchString;
-    suggestionList.innerHTML = '';
+    elSuggestionList.innerHTML = '';
     inputText.focus();
 }
 
 function emptyRespondFields() {
-    questionShort.innerHTML = "";
-    questionLong.innerHTML = "";
-    answer.innerHTML = "";
-    link.innerHTML = "";
+    elResultsContainer.innerHTML = "";
+    //elQuestionShort.innerHTML = "";
+    //elQuestionLong.innerHTML = "";
+    //elAnswer.innerHTML = "";
+    //elLink.innerHTML = "";
 }
 
-function getResult() {
+function displayResults() {
     fetch(baseUrl + 'bi-kompass-component-service/search-component/find?sstring=' + inputText.value)
     .then((response) => response.json())
     .then((data) => {
-        resultObject.result = data;
-        resultObject.result.forEach((element) => {
-            //suggestionList.innerHTML = "";
+        searchResultsObject.result = data;
+        searchResultsObject.result.forEach((element) => {
+
+            let resultContainer = document.createElement('DIV');
+            let questionShort = document.createElement('DIV');
+            let questionLong =document.createElement('DIV');
+            let answer = document.createElement('DIV');
+            let link = document.createElement('DIV');
+            let elHr = document.createElement('HR');
             
             let questionShortText = document.createTextNode(element.question_short);
+            //elQuestionShort.appendChild(questionShortText);
             questionShort.appendChild(questionShortText);
+            resultContainer.appendChild(questionShort);
 
-            let questionLongText = element.question_long == null ? document.createTextNode("Keine Lange Ausführung") : document.createTextNode(element.question_long);
+            let questionLongText = element.question_long == null
+                            ? document.createTextNode("Keine Lange Ausführung")
+                            :document.createTextNode(element.question_long);
+            //elQuestionLong.appendChild(questionLongText);
             questionLong.appendChild(questionLongText);
+            resultContainer.appendChild(questionLong);
 
             let answerText = document.createTextNode(element.answer);
+            //elAnswer.appendChild(answerText);
             answer.appendChild(answerText);
+            resultContainer.appendChild(answer);
+
             let linkText = document.createTextNode(element.link);
+            //elLink.appendChild(linkText);
             link.appendChild(linkText);
+            resultContainer.appendChild(link);
+            elResultsContainer.appendChild(resultContainer);
+            elResultsContainer.appendChild(elHr);
+
         });
     })
 }
 
+function highlightMatches(substring="", originString="") {
+    let regex = new RegExp(substring, "gi");
+    let resStr = originString.replace(regex, (match) => {
+        return `<strong>${match}</strong>`;
+    })
+    return resStr;
+}
+
 inputText.addEventListener('keyup', function(event) {
     if (event.keyCode === 13) {
-        suggestionList.innerHTML = "";
+        elSuggestionList.innerHTML = "";
         
         if(inputText.value != '') {
             emptyRespondFields();
             event.preventDefault();
-            getResult();
+            displayResults();
         }
     } else {
         if (inputText.value != '') {
         fetch(baseUrl + 'bi-kompass-component-service/search-component/find?sstring=' + inputText.value)
         .then((response) => response.json())
         .then((data) => {
-            suggestionList.innerHTML = "";
+            elSuggestionList.innerHTML = "";
             preResult.suggestions = data;
             preResult.suggestions.forEach(element => {
                 /* finde Teilstring in textNode und ersetze durch <strong> */
@@ -82,23 +112,14 @@ inputText.addEventListener('keyup', function(event) {
                 let li = document.createElement('LI');
                 li.innerHTML = outputString;
                 li.class = "suggestion";
-                li.addEventListener('click', getSelectedSuggestion);
-                suggestionList.appendChild(li);
+                li.addEventListener('click', assignSelectedSuggestionToInputText);
+                elSuggestionList.appendChild(li);
             });
         });
         } else {
-            suggestionList.innerHTML = "";
+            elSuggestionList.innerHTML = "";
         }
         console.log(inputText.value);
     }
     
 });
-
-
-function highlightMatches(substring="", originString="") {
-    let regex = new RegExp(substring, "gi");
-    let resStr = originString.replace(regex, (match) => {
-        return `<strong>${match}</strong>`;
-    })
-return resStr;
-}
