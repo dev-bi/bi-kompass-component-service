@@ -84,18 +84,23 @@
     font-size: small;
 }
 
-#question {
+.question {
     border-bottom: solid 1px #ccc;
 }
 
-#question-long {
+.question-long {
     font-size: small;
     padding-left: 2%;
 }
 
-#answer {
+.answer {
     margin-top: 20px;
     font-weight: bold;
+}
+
+#search-info-box .faq-container {
+    border: solid 1px #aaa;
+    margin: 2%;
 }
 
 /* ********************** */

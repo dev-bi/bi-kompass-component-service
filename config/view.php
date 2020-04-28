@@ -1,5 +1,6 @@
 <?php
 
+/*
 return [
     'paths' => [
         realpath(base_path('resources/views')),
@@ -8,3 +9,4 @@ return [
         realpath(base_path('components/add-edit-ui/views')),
     ],
 ];
+*/
