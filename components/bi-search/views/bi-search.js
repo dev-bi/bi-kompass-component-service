@@ -46,10 +46,14 @@ function displayResults() {
         searchResultsObject.result.forEach((element) => {
 
             let resultContainer = document.createElement('DIV');
+            resultContainer.setAttribute('class', 'faq-container');
             let questionShort = document.createElement('DIV');
+            questionShort.setAttribute('class', 'question');
             let questionLong =document.createElement('DIV');
+            questionLong.setAttribute('class', 'question-long');
             let answer = document.createElement('DIV');
-            let link = document.createElement('DIV');
+            answer.setAttribute('class', 'answer');
+            let link = document.createElement('A');
             let elHr = document.createElement('HR');
             
             let questionShortText = document.createTextNode(element.question_short);
@@ -72,10 +76,10 @@ function displayResults() {
             let linkText = document.createTextNode(element.link);
             //elLink.appendChild(linkText);
             link.appendChild(linkText);
+            link.setAttribute('href', element.link);
             resultContainer.appendChild(link);
             elResultsContainer.appendChild(resultContainer);
-            elResultsContainer.appendChild(elHr);
-
+            //elResultsContainer.appendChild(elHr);
         });
     })
 }
