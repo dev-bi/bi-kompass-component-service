@@ -11,7 +11,11 @@ let elSuggestionList = document.getElementById('suggestion-list');
 
 let elResultsContainer = document.getElementById('search-info-box');
 
-let suggestionList = { suggestions : ''};
+let suggestionList = {
+    currentIndex : 0,
+    suggestions : ''
+};
+
 let searchResultsObject = { result: '' };
 
 function assignSelectedSuggestionToInputText(e) {
@@ -77,6 +81,34 @@ function highlightMatches(matchedString="", fullResultString="") {
     return resStr;
 }
 
+function navigateSuggestions(key) {
+    console.log("key: " + key);
+    let lastElement = 0;
+    if (key === 40 &&
+        suggestionList.currentIndex < suggestionList.suggestions.length - 1) {
+        suggestionList.currentIndex += 1;
+        if (suggestionList.currentIndex == 0) {
+            lastElement = 0
+        } else {
+            lastElement = -1;
+        }
+        console.log("List Index: " + suggestionList.currentIndex);
+
+    } else if (key === 38 && suggestionList.currentIndex > 0) {
+        suggestionList.currentIndex -= 1;
+        if (suggestionList.currentIndex == suggestionList.suggestions.length - 1) {
+            lastElement = 0
+        } else {
+            lastElement = +1;
+        }
+        console.log("List Index: " + suggestionList.currentIndex);
+    }
+    elInputText.value = suggestionList.suggestions[suggestionList.currentIndex].question_short;
+    let liArray = elSuggestionList.children;
+    liArray[suggestionList.currentIndex].classList.toggle('is-current');
+    liArray[suggestionList.currentIndex + lastElement].classList.toggle('is-current');
+}
+
 elInputText.addEventListener('keyup', function(event) {
     if (event.keyCode === 13) {
         elSuggestionList.innerHTML = "";
@@ -88,11 +120,15 @@ elInputText.addEventListener('keyup', function(event) {
         }
 
     } else if (elInputText.value != '') {
+        if (event.keyCode === 38 || event.keyCode === 40) {
+            navigateSuggestions(event.keyCode);
+        } else {
             fetch(baseUrl + 'bi-kompass-component-service/search-component/find?sstring=' + elInputText.value)
             .then((response) => response.json())
             .then((data) => {
                 elSuggestionList.innerHTML = "";
                 suggestionList.suggestions = data;
+                suggestionList.currentIndex = 0;
                 suggestionList.suggestions.forEach(element => {
                     let li = document.createElement('LI');
                     let outputString = highlightMatches(elInputText.value, element.question_short);
@@ -101,7 +137,10 @@ elInputText.addEventListener('keyup', function(event) {
                     li.addEventListener('click', assignSelectedSuggestionToInputText);
                     elSuggestionList.appendChild(li);
                 });
+                elSuggestionList.firstChild.classList.toggle('is-current');
             });
+        }
+            
     } else {
         elSuggestionList.innerHTML = "";
     }
