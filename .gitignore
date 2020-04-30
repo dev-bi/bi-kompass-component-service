@@ -8,3 +8,6 @@ node_modules
 package.json
 .eslintrc.json
 .vscode
+components/bi-search/views/bi-search.js.production
+components/bi-search/views/bi-search.php.production
+components/bi-search/views/style.css.production

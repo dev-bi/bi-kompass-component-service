@@ -103,4 +103,8 @@
     margin: 2%;
 }
 
+.is-current {
+    background-color: #e8e8e8;
+}
+
 /* ********************** */
