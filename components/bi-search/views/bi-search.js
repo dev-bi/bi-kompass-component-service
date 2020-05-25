@@ -1,7 +1,7 @@
 /*
     Server / Localhost Setting
 */
-const env = "http://localhost/bi-kompass/";
+const env = "http://localhost/";
 
 const baseUrl = env;
 
