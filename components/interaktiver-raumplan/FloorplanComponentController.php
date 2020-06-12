@@ -13,7 +13,8 @@ class FloorplanComponentController extends Controller
     private $errViewPath = 'components/interaktiver-raumplan/views/error';
     private $svgPath = '/components/public/bi-floorplan/svg';
 
-    private function configViewPath () {
+    private function configViewPath()
+    {
         config([
             'view.paths' => [
                 realpath(base_path($this->viewPath)),
@@ -46,7 +47,8 @@ class FloorplanComponentController extends Controller
      *
      * @return Response gibt die für diesen View verwendete css datei zurück.
      */
-    public function serveStylesheet() {
+    public function serveStylesheet()
+    {
         $this->configViewPath();
 
         $css_content = View::make('interaktiver-raumplan-view');
@@ -56,7 +58,8 @@ class FloorplanComponentController extends Controller
 
     }
 
-    public function getJson($locationId = 0) {
+    public function getJson($locationId = 0)
+    {
         $rooms = null;
         if ($locationId == 0)
             $rooms = app('db')->select("select * from rooms");
@@ -65,7 +68,8 @@ class FloorplanComponentController extends Controller
         return response()->json($rooms);
     }
 
-    public function getFloorplanSVG(String $floorId) {
+    public function getFloorplanSVG(string $floorId)
+    {
         $svgUrl = url('/') . $this->svgPath;
         $filename = sprintf("$svgUrl/%s.svg", $floorId);
         try {
@@ -89,10 +93,16 @@ class FloorplanComponentController extends Controller
 
     public function getAllLocations() {
         $locations = app('db')->select('SELECT * FROM locations');
-        return response()->json($locations);
+        return response()->json(
+            $locations,
+            200,
+            ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
-    public function getFloorsByLocationId($locationId) {
+    public function getFloorsByLocationId($locationId)
+    {
 
     }
 
