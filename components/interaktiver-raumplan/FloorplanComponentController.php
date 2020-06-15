@@ -79,17 +79,8 @@ class FloorplanComponentController extends Controller
             $json = [
                 "Fehler" => "Floorplan mit ID=$floorId nicht gefunden"
             ];
-            return response()->json($json);
+            return $this->jsonResponse($json);
         }
-    }
-
-    public function testeAPI($floorid)
-    {
-        $data = [
-            'some test data' => $floorid,
-        ];
-        return response()->json($data);
-        // dd("Teste API. Lade: $floorid");
     }
 
     public function getAllLocations()
