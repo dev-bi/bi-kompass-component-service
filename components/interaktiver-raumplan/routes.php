@@ -4,7 +4,7 @@ $router->group(['prefix' => 'api/floorplan'], function () use ($router) {
     $router->get('/svg/{floorid}', 'FloorplanComponentController@getFloorplanSVG');
     $router->get('/room/{roomid}', 'FloorplanComponentController@getRoomdata');
 
-    // $router->get('/floor/{locationid}');
+    $router->get('/floors/{locationid}', 'FloorplanComponentController@getFloorsByLocationId');
     // $router->get('/floors');
 
     $router->get('/locations', 'FloorplanComponentController@getAllLocations');

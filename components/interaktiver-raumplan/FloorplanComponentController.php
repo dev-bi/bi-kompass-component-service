@@ -83,7 +83,8 @@ class FloorplanComponentController extends Controller
         }
     }
 
-    public function testeAPI($floorid) {
+    public function testeAPI($floorid)
+    {
         $data = [
             'some test data' => $floorid,
         ];
@@ -91,19 +92,16 @@ class FloorplanComponentController extends Controller
         // dd("Teste API. Lade: $floorid");
     }
 
-    public function getAllLocations() {
+    public function getAllLocations()
+    {
         $locations = app('db')->select('SELECT * FROM locations');
-        return response()->json(
-            $locations,
-            200,
-            ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
-            JSON_UNESCAPED_UNICODE
-        );
+        return $this->jsonResponse($locations);
     }
 
     public function getFloorsByLocationId($locationId)
     {
-
+        $floors = app('db')->select('SELECT * FROM floors WHERE location_id=?', [$locationId]);
+        return $this->jsonResponse($floors);
     }
 
 }

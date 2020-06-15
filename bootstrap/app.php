@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/../components/includes.php';
 
@@ -8,6 +7,8 @@ require_once __DIR__.'/../components/includes.php';
 ))->bootstrap();
 
 date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
+
+//header('Access-Control-Allow-Origin: *');
 
 /*
 |--------------------------------------------------------------------------
