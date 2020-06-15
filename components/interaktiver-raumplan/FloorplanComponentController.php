@@ -74,6 +74,7 @@ class FloorplanComponentController extends Controller
         $filename = sprintf("$svgUrl/%s.svg", $floorId);
         try {
             $svgString = file_get_contents($filename);
+            header('Access-Control-Allow-Origin: *');
             return $svgString;
         } catch (Exception $e) {
             $json = [
