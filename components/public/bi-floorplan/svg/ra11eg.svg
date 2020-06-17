@@ -7,7 +7,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="testrooms_rosenallee_eg.svg"
+   sodipodi:docname="ra11eg.svg"
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
    id="svg8"
    version="1.1"
@@ -26,8 +26,8 @@
      inkscape:document-rotation="0"
      inkscape:current-layer="layer1"
      inkscape:document-units="mm"
-     inkscape:cy="464.86178"
-     inkscape:cx="531.35148"
+     inkscape:cy="110.67183"
+     inkscape:cx="556.50136"
      inkscape:zoom="1.4"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
@@ -43,7 +43,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -52,37 +52,40 @@
      inkscape:groupmode="layer"
      inkscape:label="Ebene 1">
     <rect
-       y="73.810883"
-       x="37.010883"
+       y="24.862967"
+       x="37.766834"
        height="31.499979"
        width="220.36011"
        id="rect833"
        style="fill:#ffffff;stroke:#000000;stroke-width:0.221765" />
     <rect
-       y="105.30415"
-       x="37.032501"
-       height="56.318451"
-       width="68.035713"
-       id="rect835"
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.264999" />
+       y="56.34927"
+       x="37.781487"
+       height="56.332378"
+       width="61.057079"
+       class="room"
+       id="ra11-eg-ugr05"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.251072" />
     <rect
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.264999"
-       id="rect835-2"
-       width="68.035713"
-       height="56.318455"
-       x="104.92622"
-       y="105.26637" />
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.243495"
+       class="room"
+       id="ra11-eg-ugr06"
+       width="57.404484"
+       height="56.35508"
+       x="98.755829"
+       y="56.300144" />
     <rect
-       y="105.26637"
-       x="172.96194"
-       height="56.318455"
-       width="68.035713"
-       id="rect835-2-6"
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.264999" />
+       y="56.28989"
+       x="156.15691"
+       height="56.375576"
+       width="59.355919"
+       class="room"
+       id="ra11-eg-ugr07"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.247644" />
     <rect
        ry="0"
-       y="80.1325"
-       x="256.45685"
+       y="31.184584"
+       x="257.2128"
        height="17.386904"
        width="2.0788674"
        id="rect869"
@@ -92,8 +95,16 @@
        id="rect869-9"
        width="2.0788674"
        height="17.386904"
-       x="36.191216"
-       y="80.1325"
+       x="36.947166"
+       y="31.184584"
        ry="0" />
+    <rect
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.209803"
+       class="room"
+       id="ra11-eg-ugr08"
+       width="42.573818"
+       height="56.413414"
+       x="215.51143"
+       y="56.253429" />
   </g>
 </svg>

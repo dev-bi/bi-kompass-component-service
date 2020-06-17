@@ -54,7 +54,7 @@
     <rect
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
        class="room"
-       id="nw10-r110"
+       id="nw10-og1-r110"
        width="60"
        height="37.07"
        x="85.818451"
@@ -64,12 +64,12 @@
        x="85.818451"
        height="44.591827"
        width="60"
-       id="nw10-r111"
+       id="nw10-og1-r111"
        class="room"
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999" />
     <rect
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999"
-       id="nw10-r112"
+       id="nw10-og1-r112"
        class="room"
        width="45"
        height="40"
@@ -80,7 +80,7 @@
        x="8.8198929"
        height="40"
        width="45"
-       id="nw10-r113"
+       id="nw10-og1-r113"
        class="room"
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999" />
     <path
@@ -98,12 +98,12 @@
        x="223.8593"
        height="48.524494"
        width="59.961906"
-       id="nw10-wc1"
+       id="nw10-og1-wc"
        class="room"
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.303093" />
     <rect
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.224918"
-       id="nw10-kopieraum"
+       id="nw10-og1-kitchen"
        class="room"
        width="60.040085"
        height="26.686567"

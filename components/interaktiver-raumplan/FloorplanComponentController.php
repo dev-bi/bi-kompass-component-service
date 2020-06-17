@@ -96,4 +96,27 @@ class FloorplanComponentController extends Controller
         return $this->jsonResponse($floors);
     }
 
+    public function getRoomDataBySvgId($svgId)
+    {
+        $sqlString ='
+            SELECT rooms.function AS room_function,
+            rooms.name AS room_name,
+            rooms.id AS room_id,
+            rooms.description AS room_description,
+            rooms.nickname AS room_nickname,
+            persons.id AS person_id,
+            persons.firstname AS person_firstname,
+            persons.lastname AS person_lastname,
+            persons.function AS person_function,
+            persons.phone AS person_phone
+                FROM rooms
+                    RIGHT JOIN persons
+                    ON rooms.id = persons.room_id
+                WHERE svg_unique_name = ?';
+
+        $room = app('db')->select($sqlString, [$svgId]);
+
+        return $this->jsonResponse($room);
+    }
+
 }
